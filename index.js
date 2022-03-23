@@ -236,7 +236,7 @@ QuickBooks.prototype.changeDataCapture = function(entities, since, callback) {
  * @param  {object} entityId - optional Id of the QBO entity the Attachable will be linked to
  * @param  {function} callback - callback which receives the newly created Attachable
  */
-QuickBooks.prototype.upload = function(filename, contentType, stream, entityType, entityId, callback) {
+QuickBooks.prototype.upload = function(filename, contentType, stream, entityType, entityId, includeOnSend, callback) {
   var that = this
   var opts = {
     url: '/upload',
@@ -260,6 +260,7 @@ QuickBooks.prototype.upload = function(filename, contentType, stream, entityType
       that.updateAttachable({
         Id: id,
         SyncToken: '0',
+        IncludeOnSend: includeOnSend,
         AttachableRef: [{
           EntityRef: {
             type: entityType,
